@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.kit.pos.config.AppConfig;
@@ -24,6 +25,7 @@ public class KITUserDetailsService implements UserDetailsService{
 	@Autowired private BusinessService businessService;
 	@Autowired private UserService userService;
 	@Autowired private AppConfig appConfig;
+	@Autowired private BCryptPasswordEncoder passwordEncoder;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -51,6 +53,24 @@ public class KITUserDetailsService implements UserDetailsService{
 		Business business = businessService.find(b);
 		if(business == null) throw  new UsernameNotFoundException("Business is not correct");
 		if(business.getStatus() == 0) throw  new UsernameNotFoundException("Business is inactive");
+
+//		User user = new User();
+//		user.setBusinessId("100000");
+//		user.setUsername("admin");
+//		user.setPassword(passwordEncoder.encode("1234"));
+//		user.setDivision("01");
+//		user.setShop("01");
+//		user.setCounter("01");
+//		user.setStatus(1);
+//		user.setAdmin(true);
+//		
+//		Business business  = new Business();
+//		business.setBusinessId("100000");
+//		business.setDivision("01");
+//		business.setShop("01");
+//		business.setCounter("01");
+//		business.setStatus(1);
+//		business.setName("KIT");
 
 		return new KITUserDetails(user, business);
 	}
