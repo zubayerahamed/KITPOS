@@ -22,12 +22,14 @@ public class ResponseHelper {
 	private static final String DEFAULT_ERROR_MESSAGE = "Failed to process";
 	private static final String APPEND_SEPERATOR = ", ";
 	private static final String STATUS_KEY = "status";
+	private static final String STATUS_CODE = "code";
 	private static final String REDIRECT_KEY = "redirecturl";
 	private static final String MESSAGE_KEY = "message";
 	private static final String DISPLAY_MESSAGE = "displayMessage";
 
 	private boolean displayMessage = true;
 	private String statusMessage;
+	private String statusCode;
 	private ResponseStatus status;
 	private Map<String, Object> response = new HashMap<>();
 
@@ -37,6 +39,10 @@ public class ResponseHelper {
 
 	public void setStatus(ResponseStatus status) {
 		this.status = status;
+	}
+
+	public void setStatusCode(String code) {
+		this.statusCode = code;
 	}
 
 	public void setStatusMessage(String message) {
@@ -83,6 +89,13 @@ public class ResponseHelper {
 		this.statusMessage = message;
 	}
 
+	public void setErrorStatusAndMessage(String code, String message) {
+		this.statusCode = code;
+		this.status = ResponseStatus.ERROR;
+		if(StringUtils.isBlank(message)) message = DEFAULT_ERROR_MESSAGE;
+		this.statusMessage = message;
+	}
+
 	public void setWarningStatusAndMessage(String message) {
 		this.status = ResponseStatus.WARNING;
 		this.statusMessage = message;
@@ -123,6 +136,7 @@ public class ResponseHelper {
 		response.put(STATUS_KEY, this.status.name().toUpperCase());
 		response.put(MESSAGE_KEY, this.statusMessage);
 		response.put(DISPLAY_MESSAGE, this.displayMessage);
+		response.put(STATUS_CODE, this.statusCode);
 		return this.response;
 	}
 }
