@@ -6,5 +6,5 @@ package com.kit.pos.enums;
  */
 public enum CategoryType {
 
-	CATEGORY, SUB_CATEGORY;
+	CATEGORY, SUB_CATEGORY, FLOOR, TABLE, CHAIR;
 }

@@ -38,7 +38,7 @@ public class Category extends BaseEntity<String> {
 
 	private String categoryName;
 
-	private int sequence;
+	private int seqn;
 
 	private String parentCategoryId;
 
