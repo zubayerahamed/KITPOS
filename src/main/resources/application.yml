@@ -7,30 +7,13 @@ server:
   error:
     whitelabel:
       enabled: true
-spring: 
-  datasource: 
-    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: jdbc:sqlserver://localhost;databaseName=KITPOS
-    username: sa
-    password: zubayer%123
-    tomcat:
-      max-wait: 200000
-      max-active: 50
-      max-idle: 20
-      min-idle: 15
-  jpa:
-    show-sql: true
-    generate-ddl: true
-    hibernate:
-      ddl-auto: update
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-    properties:
-      hibernate:
-        format_sql: true
-        dialect: org.hibernate.dialect.SQLServer2012Dialect
-        id:
-          new_generator_mappings: false
-  jackson:
-    serialization:
-      indent-output: true
+
+spring:
+  profiles:
+    active: dev
+
+app: 
+  business_id : 1000010101
+  division : 01
+  shop : 01
+  counter : 01

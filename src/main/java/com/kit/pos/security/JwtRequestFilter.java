@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.kit.pos.service.JWTService;
-import com.kit.pos.service.KITUserDetailsService;
+import com.kit.pos.service.impl.UserServiceImpl;
 
 /**
  * @author Zubayer Ahamed
@@ -26,7 +26,7 @@ import com.kit.pos.service.KITUserDetailsService;
 public class JwtRequestFilter extends OncePerRequestFilter {
 
 	@Autowired
-	private KITUserDetailsService userDetailsService;
+	private UserServiceImpl userService;
 	@Autowired
 	private JWTService jwtService;
 
@@ -44,7 +44,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 		}
 
 		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-			UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+			UserDetails userDetails = this.userService.loadUserByUsername(username);
 			if (Boolean.TRUE.equals(jwtService.validateToken(jwt, userDetails))) {
 				UsernamePasswordAuthenticationToken upat = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 				upat.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

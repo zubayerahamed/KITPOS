@@ -4,10 +4,10 @@ import lombok.Data;
 
 /**
  * @author Zubayer Ahamed
- * @since Jul 24, 2022
+ * @since Aug 1, 2022
  */
 @Data
-public class BusinessDTO {
+public class BusinessResponseDTO {
 
 	private String businessId;
 	private String division;

@@ -10,7 +10,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.kit.pos.entity.Business;
-import com.kit.pos.entity.User;
+import com.kit.pos.entity.UserAccount;
 import com.kit.pos.enums.UserType;
 
 /**
@@ -37,7 +37,7 @@ public class KITUserDetails implements UserDetails {
 	private List<GrantedAuthority> authorities;
 	private Business business;
 
-	public KITUserDetails(User user, Business business) {
+	public KITUserDetails(UserAccount user, Business business) {
 		this.name = user.getName();
 		this.username = user.getUsername();
 		this.password = user.getPassword();

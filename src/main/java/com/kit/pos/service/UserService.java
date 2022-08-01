@@ -1,6 +1,6 @@
 package com.kit.pos.service;
 
-import com.kit.pos.entity.User;
+import com.kit.pos.entity.UserAccount;
 import com.kit.pos.entity.pk.UserPK;
 
 /**
@@ -9,5 +9,5 @@ import com.kit.pos.entity.pk.UserPK;
  */
 public interface UserService {
 
-	public User find(UserPK userPk);
+	public UserAccount find(UserPK userPk);
 }

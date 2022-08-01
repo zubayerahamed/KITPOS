@@ -1,6 +1,7 @@
 package com.kit.pos.entity;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -10,8 +11,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-import com.kit.pos.entity.pk.ProductPK;
+import com.kit.pos.entity.pk.ProductArchivePK;
 import com.kit.pos.enums.DiscountType;
 import com.kit.pos.enums.ProductGroup;
 
@@ -20,16 +23,16 @@ import lombok.EqualsAndHashCode;
 
 /**
  * @author Zubayer Ahamed
- * @since Jul 25, 2022
+ * @since Aug 1, 2022
  */
 @Data
 @Entity
-@Table(name = "PRODUCT")
-@IdClass(ProductPK.class)
-@EqualsAndHashCode(of = { "businessId","productId"}, callSuper = false)
-public class Product extends BaseEntity<String> {
+@Table(name = "PRODUCT_ARCHIVE")
+@IdClass(ProductArchivePK.class)
+@EqualsAndHashCode(of = { "businessId","productId","archivedAt"}, callSuper = false)
+public class ProductArchive extends BaseEntity<String> {
 
-	private static final long serialVersionUID = -7805690517992099886L;
+	private static final long serialVersionUID = 270037700129675200L;
 
 	@Id
 	@Basic(optional = false)
@@ -38,6 +41,11 @@ public class Product extends BaseEntity<String> {
 	@Id
 	@Basic(optional = false)
 	private String productId;
+
+	@Id
+	@Basic(optional = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date archivedAt;
 
 	private String name;
 

@@ -26,9 +26,9 @@ import lombok.EqualsAndHashCode;
 @Data
 @Entity
 @IdClass(UserPK.class)
-@Table(name = "US")
+@Table(name = "USER_ACCOUNT")
 @EqualsAndHashCode(of = { "businessId","username","division","shop","counter"}, callSuper = false)
-public class User extends BaseEntity<String> {
+public class UserAccount extends BaseEntity<String> {
 
 	private static final long serialVersionUID = -5366744299983993402L;
 

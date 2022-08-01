@@ -3,7 +3,6 @@ package com.kit.pos.entity;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -47,8 +46,4 @@ public class SalesOrderDetail extends BaseEntity<String> {
 	private BigDecimal vatRate;
 	private BigDecimal vatAmt;
 
-	private String division;
-	private String shift;
-	private String shop;
-	private String counter;
 }

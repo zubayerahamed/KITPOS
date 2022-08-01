@@ -19,10 +19,6 @@ public class SalesOrder extends BaseEntity<String> {
 
 	private String businessId;
 	private String orderId;
-	private String division;
-	private String shop;
-	private String terminal;
-	private String shift;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date orderDate;

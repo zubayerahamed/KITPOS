@@ -1,7 +1,9 @@
 package com.kit.pos.service;
 
-import com.kit.pos.entity.Business;
-import com.kit.pos.entity.pk.BusinessPK;
+import java.util.Map;
+
+import com.kit.pos.dto.BusinessRequestDTO;
+import com.kit.pos.model.ResponseHelper;
 
 /**
  * @author Zubayer Ahamed
@@ -9,5 +11,7 @@ import com.kit.pos.entity.pk.BusinessPK;
  */
 public interface BusinessService {
 
-	public Business find(BusinessPK businessPk);
+	public Map<String, Object> find(BusinessRequestDTO businessDTO, ResponseHelper helper);
+
+	public Map<String, Object> save(BusinessRequestDTO businessDTO, ResponseHelper helper);
 }
