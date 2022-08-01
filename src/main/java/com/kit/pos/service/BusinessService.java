@@ -11,7 +11,7 @@ import com.kit.pos.model.ResponseHelper;
  */
 public interface BusinessService {
 
-	public Map<String, Object> find(BusinessRequestDTO businessDTO, ResponseHelper helper);
+	public Map<String, Object> find(ResponseHelper helper);
 
 	public Map<String, Object> save(BusinessRequestDTO businessDTO, ResponseHelper helper);
 }

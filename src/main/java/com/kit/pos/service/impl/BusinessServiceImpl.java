@@ -7,6 +7,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kit.pos.config.AppConfig;
 import com.kit.pos.dto.BusinessRequestDTO;
 import com.kit.pos.dto.BusinessResponseDTO;
 import com.kit.pos.entity.Business;
@@ -23,13 +24,11 @@ import com.kit.pos.service.BusinessService;
 public class BusinessServiceImpl implements BusinessService {
 
 	@Autowired private BusinessRepository businessRepository;
+	@Autowired private AppConfig appConfig;
 
 	@Override
-	public Map<String, Object> find(BusinessRequestDTO reqDto, ResponseHelper helper) {
-		BusinessPK pk = new BusinessPK();
-		BeanUtils.copyProperties(reqDto, pk);
-		
-		Optional<Business> optional = businessRepository.findById(pk);
+	public Map<String, Object> find(ResponseHelper helper) {
+		Optional<Business> optional = businessRepository.findById(new BusinessPK(appConfig.getBusinessId(), appConfig.getDivision(), appConfig.getShop(), appConfig.getCounter()));
 		Business business = optional.isPresent() ? optional.get() : null;
 
 		if(business == null) {
