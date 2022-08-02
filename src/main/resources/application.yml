@@ -13,7 +13,7 @@ spring:
     active: dev
 
 app: 
-  business_id : 1000010101
-  division : 01
-  shop : 01
-  counter : 01
+  business_id : 1000101010
+  division : 10
+  shop : 10
+  counter : 10

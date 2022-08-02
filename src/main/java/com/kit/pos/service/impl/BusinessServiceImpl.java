@@ -1,6 +1,5 @@
 package com.kit.pos.service.impl;
 
-import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
@@ -12,43 +11,39 @@ import com.kit.pos.dto.BusinessRequestDTO;
 import com.kit.pos.dto.BusinessResponseDTO;
 import com.kit.pos.entity.Business;
 import com.kit.pos.entity.pk.BusinessPK;
-import com.kit.pos.model.ResponseHelper;
 import com.kit.pos.repository.BusinessRepository;
+import com.kit.pos.service.BaseService;
 import com.kit.pos.service.BusinessService;
+import com.kit.pos.util.Response;
 
 /**
  * @author Zubayer Ahamed
  * @since Jul 24, 2022
  */
 @Service
-public class BusinessServiceImpl implements BusinessService {
+public class BusinessServiceImpl extends BaseService<BusinessResponseDTO> implements BusinessService {
 
 	@Autowired private BusinessRepository businessRepository;
 	@Autowired private AppConfig appConfig;
 
 	@Override
-	public Map<String, Object> find(ResponseHelper helper) {
+	public Response<BusinessResponseDTO> find() {
 		Optional<Business> optional = businessRepository.findById(new BusinessPK(appConfig.getBusinessId(), appConfig.getDivision(), appConfig.getShop(), appConfig.getCounter()));
 		Business business = optional.isPresent() ? optional.get() : null;
 
-		if(business == null) {
-			helper.setErrorStatusAndMessage("Business not found");
-			return helper.getResponse();
-		}
+		if(business == null) return getErrorResponse(null, "Business not found!");
 
 		BusinessResponseDTO responseDto = new BusinessResponseDTO();
 		BeanUtils.copyProperties(business, responseDto);
-		helper.addDataToResponse("data", responseDto);
-		helper.setSuccessStatusAndMessage("Business found");
-		return helper.getResponse();
+		
+		Response<BusinessResponseDTO> response = new Response<BusinessResponseDTO>();
+		response.setObj(responseDto);
+		return getSuccessResponse(null, "Business found", response);
 	}
 
 	@Override
-	public Map<String, Object> save(BusinessRequestDTO BusinessDTO, ResponseHelper helper) {
-		if(BusinessDTO == null) {
-			helper.setErrorStatusAndMessage("Business is null");
-			return helper.getResponse();
-		}
+	public Response<BusinessResponseDTO> save(BusinessRequestDTO BusinessDTO) {
+		if(BusinessDTO == null) return getErrorResponse(null, "Business is null");
 
 		// validation
 
@@ -56,17 +51,14 @@ public class BusinessServiceImpl implements BusinessService {
 		BeanUtils.copyProperties(BusinessDTO, business);
 
 		business = businessRepository.save(business);
-		if(business == null) {
-			helper.setErrorStatusAndMessage("Business not saved");
-			return helper.getResponse();
-		}
+		if(business == null) return getErrorResponse(null, "Business not saved");
 
 		BusinessResponseDTO responseDTO = new BusinessResponseDTO();
 		BeanUtils.copyProperties(business, responseDTO);
-		helper.addDataToResponse("data", responseDTO);
-		helper.setSuccessStatusAndMessage("Business saved successfully");
-		return helper.getResponse();
+
+		Response<BusinessResponseDTO> response = new Response<BusinessResponseDTO>();
+		response.setObj(responseDTO);
+		return getSuccessResponse(null, "Business saved successfully", response);
 	}
 
-	
 }

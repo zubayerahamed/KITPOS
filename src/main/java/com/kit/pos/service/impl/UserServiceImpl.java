@@ -11,10 +11,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.kit.pos.config.AppConfig;
+import com.kit.pos.constant.BaseConstant;
+import com.kit.pos.dto.BusinessResponseDTO;
 import com.kit.pos.entity.Business;
 import com.kit.pos.entity.UserAccount;
 import com.kit.pos.entity.pk.BusinessPK;
 import com.kit.pos.entity.pk.UserPK;
+import com.kit.pos.enums.UserType;
 import com.kit.pos.model.KITUserDetails;
 import com.kit.pos.repository.UserRepository;
 import com.kit.pos.service.BusinessService;
@@ -38,51 +41,40 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 			throw  new UsernameNotFoundException("User not found in the system");
 		}
 
-//		UserPK u = new UserPK();
-//		u.setBusinessId(appConfig.getBusinessId());
-//		u.setDivision(appConfig.getDivision());
-//		u.setShop(appConfig.getShop());
-//		u.setCounter(appConfig.getCounter());
-//		u.setUsername(username);
-//
-//		UserAccount user = find(u);
-//		if(user == null) throw  new UsernameNotFoundException("User not found in the system");
-//		if(user.getStatus() == 0) throw  new UsernameNotFoundException("User is inactive");
-//
-//		BusinessPK b = new BusinessPK();
-//		b.setBusinessId(appConfig.getBusinessId());
-//		b.setDivision(appConfig.getDivision());
-//		b.setShop(appConfig.getShop());
-//		b.setCounter(appConfig.getCounter());
-//
-//		Business business = businessService.find(b);
-//		if(business == null) throw  new UsernameNotFoundException("Business is not correct");
-//		if(business.getStatus() == 0) throw  new UsernameNotFoundException("Business is inactive");
+		UserAccount user = null;
+		if(BaseConstant.SYSTEM_ADMIN_USERNAME.equalsIgnoreCase(username)) {
+			user = getSystemAdminUser();
+		} else {
+			user = findByUsername(username);
+		}
+		if(user == null) throw  new UsernameNotFoundException("User not found in the system");
+		if(user.getStatus() == 0) throw  new UsernameNotFoundException("User is inactive");
 
+
+		BusinessResponseDTO businessResponseDTO = businessService.find().getObj();
+		if(businessResponseDTO == null) throw  new UsernameNotFoundException("Business is not correct");
+		if(businessResponseDTO.getStatus() == 0) throw  new UsernameNotFoundException("Business is inactive");
+
+		return new KITUserDetails(user, businessResponseDTO);
+	}
+
+	private UserAccount getSystemAdminUser() {
 		UserAccount user = new UserAccount();
-		user.setBusinessId("100000");
-		user.setUsername("admin");
-		user.setPassword(passwordEncoder.encode("1234"));
-		user.setDivision("01");
-		user.setShop("01");
-		user.setCounter("01");
+		user.setBusinessId(appConfig.getBusinessId());
+		user.setUsername(BaseConstant.SYSTEM_ADMIN_USERNAME);
+		user.setPassword(passwordEncoder.encode(BaseConstant.SYSTEM_ADMIN_PASSWORD));
+		user.setDivision(appConfig.getDivision());
+		user.setShop(appConfig.getShop());
+		user.setCounter(appConfig.getCounter());
 		user.setStatus(1);
-		user.setAdmin(true);
-		
-		Business business  = new Business();
-		business.setBusinessId("100000");
-		business.setDivision("01");
-		business.setShop("01");
-		business.setCounter("01");
-		business.setStatus(1);
-		business.setName("KIT");
-
-		return new KITUserDetails(user, business);
+		user.setSystemadmin(true);
+		user.setUserType(UserType.POS);
+		return user;
 	}
 
 	@Override
-	public UserAccount find(UserPK userPk) {
-		Optional<UserAccount> optional = userRepository.findById(userPk);
+	public UserAccount findByUsername(String username) {
+		Optional<UserAccount> optional = userRepository.findById(new UserPK(appConfig.getBusinessId(), username, appConfig.getDivision(), appConfig.getShop(), appConfig.getCounter()));
 		return optional.isPresent() ? optional.get() : null;
 	}
 

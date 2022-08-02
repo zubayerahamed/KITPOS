@@ -9,7 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.kit.pos.entity.Business;
+import com.kit.pos.dto.BusinessResponseDTO;
 import com.kit.pos.entity.UserAccount;
 import com.kit.pos.enums.UserType;
 
@@ -35,9 +35,9 @@ public class KITUserDetails implements UserDetails {
 	private boolean enabled;
 	private String roles;
 	private List<GrantedAuthority> authorities;
-	private Business business;
+	private BusinessResponseDTO business;
 
-	public KITUserDetails(UserAccount user, Business business) {
+	public KITUserDetails(UserAccount user, BusinessResponseDTO business) {
 		this.name = user.getName();
 		this.username = user.getUsername();
 		this.password = user.getPassword();
@@ -86,7 +86,7 @@ public class KITUserDetails implements UserDetails {
 		return roles;
 	}
 
-	public Business getBusiness() {
+	public BusinessResponseDTO getBusiness() {
 		return business;
 	}
 

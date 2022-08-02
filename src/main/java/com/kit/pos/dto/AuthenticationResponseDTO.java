@@ -1,4 +1,4 @@
-package com.kit.pos.model;
+package com.kit.pos.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,7 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
-public class AuthenticationResponse {
+public class AuthenticationResponseDTO {
 
-	private final String jwt;
+	private final String token;
 }
