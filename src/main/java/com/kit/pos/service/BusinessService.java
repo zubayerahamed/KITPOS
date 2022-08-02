@@ -1,7 +1,7 @@
 package com.kit.pos.service;
 
-import com.kit.pos.dto.BusinessRequestDTO;
-import com.kit.pos.dto.BusinessResponseDTO;
+import com.kit.pos.dto.request.BusinessRequestDTO;
+import com.kit.pos.dto.response.BusinessResponseDTO;
 import com.kit.pos.util.Response;
 
 /**

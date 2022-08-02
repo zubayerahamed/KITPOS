@@ -1,7 +1,7 @@
 package com.kit.pos.service;
 
-import com.kit.pos.dto.AuthenticationRequestDTO;
-import com.kit.pos.dto.AuthenticationResponseDTO;
+import com.kit.pos.dto.request.AuthenticationRequestDTO;
+import com.kit.pos.dto.response.AuthenticationResponseDTO;
 import com.kit.pos.util.Response;
 
 /**

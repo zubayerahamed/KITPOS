@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kit.pos.dto.AuthenticationRequestDTO;
-import com.kit.pos.dto.AuthenticationResponseDTO;
+import com.kit.pos.dto.request.AuthenticationRequestDTO;
+import com.kit.pos.dto.response.AuthenticationResponseDTO;
 import com.kit.pos.service.AuthenticationService;
 import com.kit.pos.util.Response;
 

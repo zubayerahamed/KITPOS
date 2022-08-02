@@ -1,7 +1,8 @@
-package com.kit.pos.dto;
+package com.kit.pos.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @author Zubayer Ahamed
@@ -9,7 +10,8 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
-public class AuthenticationResponseDTO {
+@EqualsAndHashCode(callSuper = true)
+public class AuthenticationResponseDTO extends BaseResponseDTO {
 
 	private final String token;
 }

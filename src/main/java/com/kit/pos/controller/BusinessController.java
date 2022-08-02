@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kit.pos.dto.BusinessRequestDTO;
-import com.kit.pos.dto.BusinessResponseDTO;
+import com.kit.pos.dto.request.BusinessRequestDTO;
+import com.kit.pos.dto.response.BusinessResponseDTO;
 import com.kit.pos.service.BusinessService;
 import com.kit.pos.util.Response;
 
@@ -19,19 +19,19 @@ import io.swagger.annotations.ApiOperation;
  * @since Jul 24, 2022
  */
 @RestController
-@RequestMapping("/api/kitpos")
+@RequestMapping("/api/kitpos/business")
 @Api(tags = {"Business"}, description = "API")
 public class BusinessController extends KITAbstractController {
 
 	@Autowired private BusinessService businessService;
 
 	@ApiOperation(value = "Get Current Business Info")
-	@GetMapping("/business")
+	@GetMapping
 	public Response<BusinessResponseDTO> getCurrentBusinessInfo() {
 		return businessService.find();
 	}
 
-	@PostMapping("/business/save")
+	@PostMapping("/save")
 	@ApiOperation(value = "Create Business")
 	public Response<BusinessResponseDTO> saveBusiness(BusinessRequestDTO reqDto){
 		return businessService.save(reqDto);

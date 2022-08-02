@@ -7,8 +7,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import com.kit.pos.dto.AuthenticationRequestDTO;
-import com.kit.pos.dto.AuthenticationResponseDTO;
+import com.kit.pos.dto.request.AuthenticationRequestDTO;
+import com.kit.pos.dto.response.AuthenticationResponseDTO;
 import com.kit.pos.service.AuthenticationService;
 import com.kit.pos.service.BaseService;
 import com.kit.pos.util.Response;

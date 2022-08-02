@@ -1,6 +1,7 @@
 package com.kit.pos.service;
 
-import com.kit.pos.entity.UserAccount;
+import com.kit.pos.dto.response.UserAccountResponseDTO;
+import com.kit.pos.util.Response;
 
 /**
  * @author Zubayer Ahamed
@@ -8,5 +9,5 @@ import com.kit.pos.entity.UserAccount;
  */
 public interface UserService {
 
-	public UserAccount findByUsername(String username);
+	public Response<UserAccountResponseDTO> findByUsername(String username);
 }

@@ -1,7 +1,8 @@
-package com.kit.pos.dto;
+package com.kit.pos.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
@@ -11,7 +12,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthenticationRequestDTO {
+@EqualsAndHashCode(callSuper = true)
+public class AuthenticationRequestDTO extends BaseRequestDTO {
 
 	private String username;
 	private String password;

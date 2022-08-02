@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kit.pos.config.AppConfig;
-import com.kit.pos.dto.BusinessRequestDTO;
-import com.kit.pos.dto.BusinessResponseDTO;
+import com.kit.pos.dto.request.BusinessRequestDTO;
+import com.kit.pos.dto.response.BusinessResponseDTO;
 import com.kit.pos.entity.Business;
 import com.kit.pos.entity.pk.BusinessPK;
 import com.kit.pos.repository.BusinessRepository;

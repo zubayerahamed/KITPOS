@@ -1,13 +1,15 @@
-package com.kit.pos.dto;
+package com.kit.pos.dto.request;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @author Zubayer Ahamed
  * @since Jul 24, 2022
  */
 @Data
-public class BusinessRequestDTO {
+@EqualsAndHashCode(callSuper = true)
+public class BusinessRequestDTO extends BaseRequestDTO{
 
 	private String businessId;
 	private String division;
