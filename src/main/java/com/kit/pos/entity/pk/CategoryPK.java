@@ -10,5 +10,5 @@ public class CategoryPK implements Serializable {
 	private static final long serialVersionUID = 1384578712742074168L;
 
 	private String businessId;
-	private String categoryId;
+	private String name;
 }

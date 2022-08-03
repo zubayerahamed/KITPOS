@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = {"User Account"}, description = "API")
 public class UserController extends KITAbstractController {
 
-	@PostMapping("/save")
+	@PostMapping
 	@ApiOperation(value = "Create User")
 	public Response<UserAccountResponseDTO> save(UserAccountRequestDTO reqDto){
 		
@@ -31,7 +31,7 @@ public class UserController extends KITAbstractController {
 		return null;
 	}
 
-	@PutMapping("/update")
+	@PutMapping
 	@ApiOperation(value = "Update User Info")
 	public Response<UserAccountResponseDTO> update(UserAccountRequestDTO reqDto){
 		
@@ -47,7 +47,7 @@ public class UserController extends KITAbstractController {
 		return null;
 	}
 
-	@GetMapping("/all")
+	@GetMapping
 	@ApiOperation(value = "Get all users info")
 	public Response<UserAccountResponseDTO> getAll(){
 		

@@ -23,7 +23,7 @@ import lombok.EqualsAndHashCode;
 @Entity
 @IdClass(CategoryPK.class)
 @Table(name = "CATEGORY")
-@EqualsAndHashCode(of = { "businessId","categoryId"}, callSuper = false)
+@EqualsAndHashCode(of = { "businessId","name"}, callSuper = false)
 public class Category extends BaseEntity<String> {
 
 	private static final long serialVersionUID = 5436365650636024958L;
@@ -34,13 +34,11 @@ public class Category extends BaseEntity<String> {
 
 	@Id
 	@Basic(optional = false)
-	private String categoryId;
-
-	private String categoryName;
+	private String name;
 
 	private int seqn;
 
-	private String parentCategoryId;
+	private String parentCategory;
 
 	@Enumerated(EnumType.STRING)
 	private CategoryType type;
