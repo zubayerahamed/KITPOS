@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kit.pos.dto.request.ProductRequestDTO;
-import com.kit.pos.dto.response.ProductResponseDTO;
+import com.kit.pos.dto.request.InvoiceRequestDTO;
+import com.kit.pos.dto.response.InvoiceResponseDTO;
 import com.kit.pos.util.Response;
 
 import io.swagger.annotations.Api;
@@ -20,48 +20,41 @@ import io.swagger.annotations.ApiOperation;
  * @since Aug 3, 2022
  */
 @RestController
-@RequestMapping("/api/kitpos/product")
-@Api(tags = {"Product"}, description = "API")
-public class ProductController extends KITAbstractController {
+@RequestMapping("/api/kitpos/invoice")
+@Api(tags = {"Invoice"}, description = "API")
+public class InvoiceController extends KITAbstractController {
 
 	@PostMapping(produces = "application/json", consumes = "application/json")
-	@ApiOperation(value = "Create Product")
-	public Response<ProductResponseDTO> save(@RequestBody ProductRequestDTO reqDto){
+	@ApiOperation(value = "Create Invoice")
+	public Response<InvoiceResponseDTO> save(@RequestBody InvoiceRequestDTO reqDto){
 		
 		
 		return null;
 	}
 
 	@PutMapping(produces = "application/json", consumes = "application/json")
-	@ApiOperation(value = "Update Product")
-	public Response<ProductResponseDTO> update(@RequestBody ProductRequestDTO reqDto){
+	@ApiOperation(value = "Update Invoice")
+	public Response<InvoiceResponseDTO> update(@RequestBody InvoiceRequestDTO reqDto){
 		
 		
 		return null;
 	}
 
 	@GetMapping
-	@ApiOperation(value = "Get All Products")
-	public Response<ProductResponseDTO> getAll(){
+	@ApiOperation(value = "Gell All Invoice")
+	public Response<InvoiceResponseDTO> getAllInvoice(){
 		
 		
 		return null;
 	}
 
 	@GetMapping("/{id}")
-	@ApiOperation(value = "Get Product By Id")
-	public Response<ProductResponseDTO> findById(@PathVariable String id){
+	@ApiOperation(value = "Find Invoice by Id")
+	public Response<InvoiceResponseDTO> findInvoiceById(@PathVariable String id){
 		
 		
 		return null;
 	}
 
-	@GetMapping("/bycategory/{name}")
-	@ApiOperation(value = "Get All Products by Category name")
-	public Response<ProductResponseDTO> getAllByCategoryName(@PathVariable String name){
-		
-		
-		return null;
-	}
-
+	
 }

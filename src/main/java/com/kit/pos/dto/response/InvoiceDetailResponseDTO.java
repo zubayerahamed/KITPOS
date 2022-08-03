@@ -1,27 +1,21 @@
-package com.kit.pos.entity;
+package com.kit.pos.dto.response;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @author Zubayer Ahamed
- * @since Jul 27, 2022
+ * @since Aug 3, 2022
  */
 @Data
-public class SalesOrderDetail extends BaseEntity<String> {
+@EqualsAndHashCode(callSuper = true)
+public class InvoiceDetailResponseDTO extends BaseResponseDTO {
 
-	private static final long serialVersionUID = 587998557238326615L;
-
-	private String businessId;
-	private String salesOrderId;
+	private String invoiceId;
 	private String rowId;
-
-	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 
 	private BigDecimal discountRate;
@@ -45,5 +39,4 @@ public class SalesOrderDetail extends BaseEntity<String> {
 	private String statusOrder;
 	private BigDecimal vatRate;
 	private BigDecimal vatAmt;
-
 }

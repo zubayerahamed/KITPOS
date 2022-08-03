@@ -3,6 +3,7 @@ package com.kit.pos.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,8 +27,8 @@ public class AuthenticationController extends KITAbstractController {
 	@Autowired private AuthenticationService authenticationService;
 
 	@ApiOperation(value = "Get Authentication Token")
-	@PostMapping("/authenticate")
-	public Response<AuthenticationResponseDTO> getAuthenticationToken(AuthenticationRequestDTO reqDto) throws BadCredentialsException {
+	@PostMapping(value="/authenticate", produces = "application/json", consumes = "application/json")
+	public Response<AuthenticationResponseDTO> getAuthenticationToken(@RequestBody AuthenticationRequestDTO reqDto) throws BadCredentialsException {
 		return authenticationService.getAuthenticationToken(reqDto);
 	}
 }

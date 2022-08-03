@@ -7,21 +7,23 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @author Zubayer Ahamed
  * @since Jul 27, 2022
  */
 @Data
-public class SalesOrder extends BaseEntity<String> {
+@EqualsAndHashCode(callSuper = false)
+public class Invoice extends BaseEntity<String> {
 
 	private static final long serialVersionUID = -6732965529625037338L;
 
 	private String businessId;
-	private String orderId;
+	private String invoiceId;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date orderDate;
+	private Date invoiceDate;
 
 	private String customer;
 	private String phone;

@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,17 +24,17 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = {"User Account"}, description = "API")
 public class UserController extends KITAbstractController {
 
-	@PostMapping
+	@PostMapping(produces = "application/json", consumes = "application/json")
 	@ApiOperation(value = "Create User")
-	public Response<UserAccountResponseDTO> save(UserAccountRequestDTO reqDto){
+	public Response<UserAccountResponseDTO> save(@RequestBody UserAccountRequestDTO reqDto){
 		
 		
 		return null;
 	}
 
-	@PutMapping
+	@PutMapping(produces = "application/json", consumes = "application/json")
 	@ApiOperation(value = "Update User Info")
-	public Response<UserAccountResponseDTO> update(UserAccountRequestDTO reqDto){
+	public Response<UserAccountResponseDTO> update(@RequestBody UserAccountRequestDTO reqDto){
 		
 		
 		return null;

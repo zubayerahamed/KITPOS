@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kit.pos.dto.request.ProductRequestDTO;
-import com.kit.pos.dto.response.ProductResponseDTO;
+import com.kit.pos.dto.request.CustomerRequestDTO;
+import com.kit.pos.dto.response.CustomerResponseDTO;
 import com.kit.pos.util.Response;
 
 import io.swagger.annotations.Api;
@@ -20,48 +20,39 @@ import io.swagger.annotations.ApiOperation;
  * @since Aug 3, 2022
  */
 @RestController
-@RequestMapping("/api/kitpos/product")
-@Api(tags = {"Product"}, description = "API")
-public class ProductController extends KITAbstractController {
+@RequestMapping("/api/kitpos/customer")
+@Api(tags = {"Customer"}, description = "API")
+public class CustomerController extends KITAbstractController {
 
 	@PostMapping(produces = "application/json", consumes = "application/json")
-	@ApiOperation(value = "Create Product")
-	public Response<ProductResponseDTO> save(@RequestBody ProductRequestDTO reqDto){
+	@ApiOperation(value = "Create Customer")
+	public Response<CustomerResponseDTO> save(@RequestBody CustomerRequestDTO reqDto){
 		
 		
 		return null;
 	}
 
 	@PutMapping(produces = "application/json", consumes = "application/json")
-	@ApiOperation(value = "Update Product")
-	public Response<ProductResponseDTO> update(@RequestBody ProductRequestDTO reqDto){
+	@ApiOperation(value = "Update Customer")
+	public Response<CustomerResponseDTO> update(@RequestBody CustomerRequestDTO reqDto){
 		
 		
 		return null;
 	}
 
 	@GetMapping
-	@ApiOperation(value = "Get All Products")
-	public Response<ProductResponseDTO> getAll(){
+	@ApiOperation(value = "Get All Customers")
+	public Response<CustomerResponseDTO> getAll(){
 		
 		
 		return null;
 	}
 
 	@GetMapping("/{id}")
-	@ApiOperation(value = "Get Product By Id")
-	public Response<ProductResponseDTO> findById(@PathVariable String id){
+	@ApiOperation(value = "Get Customer By Id")
+	public Response<CustomerResponseDTO> findById(@PathVariable String id){
 		
 		
 		return null;
 	}
-
-	@GetMapping("/bycategory/{name}")
-	@ApiOperation(value = "Get All Products by Category name")
-	public Response<ProductResponseDTO> getAllByCategoryName(@PathVariable String name){
-		
-		
-		return null;
-	}
-
 }
