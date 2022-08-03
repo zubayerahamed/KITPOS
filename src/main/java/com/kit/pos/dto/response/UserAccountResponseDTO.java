@@ -23,7 +23,6 @@ public class UserAccountResponseDTO extends BaseResponseDTO {
 	private String businessId;
 	private String division;
 	private String shop;
-	private String counter;
 	private String password;
 	private UserType userType;
 }

@@ -27,7 +27,6 @@ public class KITUserDetails implements UserDetails {
 	private String businessId;
 	private String division;
 	private String shop;
-	private String counter;
 	private UserType userType;
 	private boolean accountExpired;
 	private boolean credentialExpired;
@@ -44,7 +43,6 @@ public class KITUserDetails implements UserDetails {
 		this.businessId = user.getBusinessId();
 		this.division = user.getDivision();
 		this.shop = user.getShop();
-		this.counter = user.getCounter();
 		this.userType = user.getUserType();
 		this.accountExpired = false;
 		this.credentialExpired = false;
@@ -72,10 +70,6 @@ public class KITUserDetails implements UserDetails {
 
 	public String getShop() {
 		return shop;
-	}
-
-	public String getCounter() {
-		return counter;
 	}
 
 	public UserType getUserType() {

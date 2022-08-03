@@ -23,7 +23,7 @@ public abstract class BaseService<R> implements CommonFunctions<R> {
 	@Autowired protected EntityManager entityManager;
 	@Autowired protected AppConfig appConfig;
 	@Autowired protected JWTService jwtUtil;
-	@Autowired BCryptPasswordEncoder passwordEncoder;
+	@Autowired protected BCryptPasswordEncoder passwordEncoder;
 
 	@Override
 	public Response<R> getSuccessResponse(String code, String message) {
@@ -68,7 +68,6 @@ public abstract class BaseService<R> implements CommonFunctions<R> {
 		user.setPassword(passwordEncoder.encode(BaseConstant.SYSTEM_ADMIN_PASSWORD));
 		user.setDivision(appConfig.getDivision());
 		user.setShop(appConfig.getShop());
-		user.setCounter(appConfig.getCounter());
 		user.setStatus(1);
 		user.setSystemadmin(true);
 		user.setUserType(UserType.POS);

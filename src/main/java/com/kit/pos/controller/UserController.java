@@ -1,5 +1,6 @@
 package com.kit.pos.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.kit.pos.dto.request.UserAccountRequestDTO;
 import com.kit.pos.dto.response.UserAccountResponseDTO;
+import com.kit.pos.service.UserService;
 import com.kit.pos.util.Response;
 
 import io.swagger.annotations.Api;
@@ -24,20 +26,18 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = {"User Account"}, description = "API")
 public class UserController extends KITAbstractController {
 
+	@Autowired private UserService userService;
+
 	@PostMapping(produces = "application/json", consumes = "application/json")
 	@ApiOperation(value = "Create User")
 	public Response<UserAccountResponseDTO> save(@RequestBody UserAccountRequestDTO reqDto){
-		
-		
-		return null;
+		return userService.save(reqDto);
 	}
 
 	@PutMapping(produces = "application/json", consumes = "application/json")
 	@ApiOperation(value = "Update User Info")
 	public Response<UserAccountResponseDTO> update(@RequestBody UserAccountRequestDTO reqDto){
-		
-		
-		return null;
+		return userService.update(reqDto);
 	}
 
 	@GetMapping("/{username}")
@@ -51,9 +51,7 @@ public class UserController extends KITAbstractController {
 	@GetMapping
 	@ApiOperation(value = "Get all users info")
 	public Response<UserAccountResponseDTO> getAll(){
-		
-		
-		return null;
+		return userService.getAllUsers();
 	}
 	
 }

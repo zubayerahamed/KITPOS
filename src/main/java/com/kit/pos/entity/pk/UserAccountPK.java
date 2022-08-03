@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserPK implements Serializable {
+public class UserAccountPK implements Serializable {
 
 	private static final long serialVersionUID = 5651050026205231628L;
 
@@ -21,5 +21,4 @@ public class UserPK implements Serializable {
 	private String username;
 	private String division;
 	private String shop;
-	private String counter;
 }

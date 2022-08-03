@@ -12,7 +12,7 @@ import javax.persistence.Transient;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.kit.pos.entity.pk.UserPK;
+import com.kit.pos.entity.pk.UserAccountPK;
 import com.kit.pos.enums.UserRole;
 import com.kit.pos.enums.UserType;
 
@@ -25,9 +25,9 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @Entity
-@IdClass(UserPK.class)
+@IdClass(UserAccountPK.class)
 @Table(name = "USER_ACCOUNT")
-@EqualsAndHashCode(of = { "businessId","username","division","shop","counter"}, callSuper = false)
+@EqualsAndHashCode(of = { "businessId","username","division","shop"}, callSuper = false)
 public class UserAccount extends BaseEntity<String> {
 
 	private static final long serialVersionUID = -5366744299983993402L;
@@ -47,10 +47,6 @@ public class UserAccount extends BaseEntity<String> {
 	@Id
 	@Basic(optional = false)
 	private String shop;
-
-	@Id
-	@Basic(optional = false)
-	private String counter;
 
 	private String password;
 
