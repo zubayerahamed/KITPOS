@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
@@ -75,6 +77,7 @@ public class UserServiceImpl extends BaseService<UserAccountResponseDTO> impleme
 	}
 
 
+	@Transactional
 	@Override
 	public Response<UserAccountResponseDTO> save(UserAccountRequestDTO reqDto) {
 		if(reqDto == null) getErrorResponse(null, "Please insert corret data to create user");

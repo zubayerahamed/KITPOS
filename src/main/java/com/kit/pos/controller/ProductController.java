@@ -21,10 +21,10 @@ import io.swagger.annotations.ApiOperation;
  */
 @RestController
 @RequestMapping("/api/kitpos/product")
-@Api(tags = {"Product"}, description = "API")
+@Api(tags = {"Product"}, description = "API", produces = "application/json", consumes = "application/json")
 public class ProductController extends KITAbstractController {
 
-	@PostMapping(produces = "application/json", consumes = "application/json")
+	@PostMapping
 	@ApiOperation(value = "Create Product")
 	public Response<ProductResponseDTO> save(@RequestBody ProductRequestDTO reqDto){
 		
@@ -32,7 +32,7 @@ public class ProductController extends KITAbstractController {
 		return null;
 	}
 
-	@PutMapping(produces = "application/json", consumes = "application/json")
+	@PutMapping
 	@ApiOperation(value = "Update Product")
 	public Response<ProductResponseDTO> update(@RequestBody ProductRequestDTO reqDto){
 		

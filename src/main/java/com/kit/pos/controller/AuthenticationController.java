@@ -20,14 +20,14 @@ import io.swagger.annotations.ApiOperation;
  * @since Aug 1, 2022
  */
 @RestController
-@RequestMapping("/api/kitpos")
-@Api(tags = {"Authentication"}, description = "API")
+@RequestMapping("/api/kitpos/authenticate")
+@Api(tags = {"Authentication"}, description = "API", produces = "application/json", consumes = "application/json")
 public class AuthenticationController extends KITAbstractController {
 
 	@Autowired private AuthenticationService authenticationService;
 
+	@PostMapping
 	@ApiOperation(value = "Get Authentication Token")
-	@PostMapping(value="/authenticate", produces = "application/json", consumes = "application/json")
 	public Response<AuthenticationResponseDTO> getAuthenticationToken(@RequestBody AuthenticationRequestDTO reqDto) throws BadCredentialsException {
 		return authenticationService.getAuthenticationToken(reqDto);
 	}

@@ -21,7 +21,7 @@ import io.swagger.annotations.ApiOperation;
  */
 @RestController
 @RequestMapping("/api/kitpos/business")
-@Api(tags = {"Business"}, description = "API")
+@Api(tags = {"Business"}, description = "API", produces = "application/json", consumes = "application/json")
 public class BusinessController extends KITAbstractController {
 
 	@Autowired private BusinessService businessService;
@@ -32,7 +32,7 @@ public class BusinessController extends KITAbstractController {
 		return businessService.find();
 	}
 
-	@PostMapping(produces = "application/json", consumes = "application/json")
+	@PostMapping
 	@ApiOperation(value = "Create Business")
 	public Response<BusinessResponseDTO> saveBusiness(@RequestBody BusinessRequestDTO reqDto){
 		return businessService.save(reqDto);

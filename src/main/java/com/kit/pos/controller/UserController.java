@@ -23,18 +23,18 @@ import io.swagger.annotations.ApiOperation;
  */
 @RestController
 @RequestMapping("/api/kitpos/user")
-@Api(tags = {"User Account"}, description = "API")
+@Api(tags = {"User Account"}, description = "API", produces = "application/json", consumes = "application/json")
 public class UserController extends KITAbstractController {
 
 	@Autowired private UserService userService;
 
-	@PostMapping(produces = "application/json", consumes = "application/json")
+	@PostMapping
 	@ApiOperation(value = "Create User")
 	public Response<UserAccountResponseDTO> save(@RequestBody UserAccountRequestDTO reqDto){
 		return userService.save(reqDto);
 	}
 
-	@PutMapping(produces = "application/json", consumes = "application/json")
+	@PutMapping
 	@ApiOperation(value = "Update User Info")
 	public Response<UserAccountResponseDTO> update(@RequestBody UserAccountRequestDTO reqDto){
 		return userService.update(reqDto);

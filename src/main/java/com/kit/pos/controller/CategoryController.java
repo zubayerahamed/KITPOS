@@ -21,7 +21,7 @@ import io.swagger.annotations.ApiOperation;
  */
 @RestController
 @RequestMapping("/api/kitpos/category")
-@Api(tags = {"Category"}, description = "API")
+@Api(tags = {"Category"}, description = "API", produces = "application/json", consumes = "application/json")
 public class CategoryController extends KITAbstractController {
 
 	@GetMapping
@@ -57,7 +57,7 @@ public class CategoryController extends KITAbstractController {
 	}
 
 
-	@PostMapping(produces = "application/json", consumes = "application/json")
+	@PostMapping
 	@ApiOperation(value = "Create Category")
 	public Response<CategoryResponseDTO> save(@RequestBody CategoryRequestDTO reqDto){
 		
@@ -65,7 +65,7 @@ public class CategoryController extends KITAbstractController {
 		return null;
 	}
 
-	@PutMapping(produces = "application/json", consumes = "application/json")
+	@PutMapping
 	@ApiOperation(value = "Update Category")
 	public Response<CategoryResponseDTO> update(@RequestBody CategoryRequestDTO reqDto){
 		

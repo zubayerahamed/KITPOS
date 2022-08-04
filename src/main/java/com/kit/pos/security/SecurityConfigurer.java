@@ -39,6 +39,8 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/api/kitpos/authenticate").permitAll();
 		http.authorizeRequests().antMatchers("/api/kitpos/business/**").permitAll();
 		http.authorizeRequests().antMatchers("/swagger-ui.html").permitAll();
+		http.authorizeRequests().antMatchers("/swagger-ui/**").permitAll();
+		http.authorizeRequests().antMatchers("/favicon.ico").permitAll();
 		http.authorizeRequests().antMatchers("/webjars/**").permitAll();
 		http.authorizeRequests().antMatchers("/swagger-resources/**").permitAll();
 		http.authorizeRequests().antMatchers("/v2/api-docs/**").permitAll();
