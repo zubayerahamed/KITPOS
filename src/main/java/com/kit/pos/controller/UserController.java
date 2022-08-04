@@ -43,9 +43,7 @@ public class UserController extends KITAbstractController {
 	@GetMapping("/{username}")
 	@ApiOperation(value = "Find User Info by Username")
 	public Response<UserAccountResponseDTO> findByUsername(@PathVariable String username){
-		
-		
-		return null;
+		return userService.findByUsername(username);
 	}
 
 	@GetMapping

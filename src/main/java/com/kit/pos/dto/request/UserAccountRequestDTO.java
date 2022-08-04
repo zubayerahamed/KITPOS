@@ -1,5 +1,7 @@
 package com.kit.pos.dto.request;
 
+import javax.validation.constraints.NotBlank;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -11,6 +13,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class UserAccountRequestDTO extends BaseRequestDTO {
 
+	@NotBlank
 	private String username;
 	private String password;
 	private String name;

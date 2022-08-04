@@ -1,5 +1,7 @@
 package com.kit.pos.dto.request;
 
+import javax.validation.constraints.NotBlank;
+
 import com.kit.pos.enums.CustomerType;
 
 import lombok.Data;
@@ -14,9 +16,10 @@ import lombok.EqualsAndHashCode;
 public class CustomerRequestDTO  extends BaseRequestDTO {
 
 	private String customerId;
-
+	@NotBlank
 	private String name;
 	private String email;
+	@NotBlank
 	private String phone1;
 	private String phone2;
 	private String country;

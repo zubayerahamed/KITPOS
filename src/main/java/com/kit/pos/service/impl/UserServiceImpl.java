@@ -65,9 +65,11 @@ public class UserServiceImpl extends BaseService<UserAccountResponseDTO> impleme
 
 	@Override
 	public Response<UserAccountResponseDTO> findByUsername(String username) {
+		if(StringUtils.isBlank(username)) return getErrorResponse(null, "Username required to find a user");
+
 		Optional<UserAccount> optional = userRepository.findById(new UserAccountPK(appConfig.getBusinessId(), username, appConfig.getDivision(), appConfig.getShop()));
 		UserAccount user = optional.isPresent() ? optional.get() : null;
-		if(user == null) getErrorResponse(null, "User not found!");
+		if(user == null) return getErrorResponse(null, "User not found!");
 
 		Response<UserAccountResponseDTO> response = getSuccessResponse(null, "User found");
 		UserAccountResponseDTO responseDto = new UserAccountResponseDTO();
@@ -80,15 +82,19 @@ public class UserServiceImpl extends BaseService<UserAccountResponseDTO> impleme
 	@Transactional
 	@Override
 	public Response<UserAccountResponseDTO> save(UserAccountRequestDTO reqDto) {
-		if(reqDto == null) getErrorResponse(null, "Please insert corret data to create user");
+		if(reqDto == null) return getErrorResponse(null, "Please insert corret data to create user");
 
 		UserAccount ua = new UserAccount();
 		BeanUtils.copyProperties(reqDto, ua);
 
 		// Validation
+		if(StringUtils.isBlank(reqDto.getUsername())) return getErrorResponse(null, "Username required");
+		if(StringUtils.isBlank(reqDto.getPassword())) return getErrorResponse(null, "Password required");
+		if(!reqDto.isAdmin() && !reqDto.isWaiter() && !reqDto.isCashier()) return getErrorResponse(null, "You have to select atleast one role");
+
 		// checck username already exist?? 
-		
-		
+		Optional<UserAccount> exist = userRepository.findById(new UserAccountPK(appConfig.getBusinessId(), reqDto.getUsername(), appConfig.getDivision(), appConfig.getShop()));
+		if(exist.isPresent()) return getErrorResponse(null, "Username already exist! Try with different one.");
 
 		ua.setBusinessId(appConfig.getBusinessId());
 		ua.setDivision(appConfig.getDivision());
@@ -110,23 +116,46 @@ public class UserServiceImpl extends BaseService<UserAccountResponseDTO> impleme
 	}
 
 
+	@Transactional
 	@Override
 	public Response<UserAccountResponseDTO> update(UserAccountRequestDTO reqDto) {
-		// TODO Auto-generated method stub
-		return null;
+		if(reqDto == null) return getErrorResponse(null, "Please insert corret data to update user");
+
+		// Validation
+		if(StringUtils.isBlank(reqDto.getUsername())) return getErrorResponse(null, "Username required");
+		if(!reqDto.isAdmin() && !reqDto.isWaiter() && !reqDto.isCashier()) return getErrorResponse(null, "You have to select atleast one role");
+
+		Optional<UserAccount> exist = userRepository.findById(new UserAccountPK(appConfig.getBusinessId(), reqDto.getUsername(), appConfig.getDivision(), appConfig.getShop()));
+		if(!exist.isPresent()) return getErrorResponse(null, "User not found in the system to do update");
+
+		UserAccount ua = exist.get();
+		if(StringUtils.isNotBlank(reqDto.getPassword())) ua.setPassword(passwordEncoder.encode(reqDto.getPassword()));
+		ua.setAdmin(reqDto.isAdmin());
+		ua.setWaiter(reqDto.isWaiter());
+		ua.setCashier(reqDto.isCashier());
+		ua.setStatus(reqDto.getStatus());
+
+		ua = userRepository.save(ua);
+		if(ua == null) return getErrorResponse(null, "Can't update user information");
+
+		UserAccountResponseDTO resDto = new UserAccountResponseDTO();
+		BeanUtils.copyProperties(ua, resDto);
+		resDto.setPassword("");
+
+		Response<UserAccountResponseDTO> response = getSuccessResponse(null, "User info updated successfully");
+		response.setObj(resDto);
+		return response;
 	}
 
 
 	@Override
 	public Response<UserAccountResponseDTO> getAllUsers() {
 		List<UserAccount> users = userRepository.findAll();
-		List<UserAccountResponseDTO> resDto = users.stream().map(data -> new ModelMapper().map(users, UserAccountResponseDTO.class)).collect(Collectors.toList());
+		List<UserAccountResponseDTO> resDto = users.stream().map(data -> new ModelMapper().map(data, UserAccountResponseDTO.class)).collect(Collectors.toList());
 		if(resDto == null || resDto.isEmpty()) return getErrorResponse(null, "No user data found in this system");
 		Response<UserAccountResponseDTO> response = getSuccessResponse(null, "User data found");
 		response.setItems(resDto);
 		return response;
 	}
-
-	
 
 }

@@ -1,5 +1,7 @@
 package com.kit.pos.dto.request;
 
+import javax.validation.constraints.NotBlank;
+
 import com.kit.pos.enums.CategoryType;
 
 import lombok.Data;
@@ -12,6 +14,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class CategoryRequestDTO extends BaseRequestDTO {
+	@NotBlank
 	private String name;
 	private int seqn;
 	private String parentCategory;
