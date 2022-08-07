@@ -18,7 +18,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @Entity
-@Table(name = "business")
+@Table(name = "BUSINESS")
 @IdClass(BusinessPK.class)
 @EqualsAndHashCode(of = { "businessId", "division", "shop", "counter" }, callSuper = false)
 public class Business extends BaseEntity<String> {
