@@ -1,5 +1,7 @@
 package com.kit.pos.service;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import org.springframework.beans.BeanUtils;
@@ -26,6 +28,14 @@ public abstract class BaseService<R> implements CommonFunctions<R> {
 	@Autowired protected BCryptPasswordEncoder passwordEncoder;
 
 	@Override
+	public Response<R> getSuccessResponse(String message) {
+		Response<R> response = new Response<R>();
+		response.setSuccess(true);
+		response.setMessage(message);
+		return response;
+	}
+
+	@Override
 	public Response<R> getSuccessResponse(String code, String message) {
 		Response<R> response = new Response<R>();
 		response.setSuccess(true);
@@ -35,9 +45,39 @@ public abstract class BaseService<R> implements CommonFunctions<R> {
 	}
 
 	@Override
+	public Response<R> getSuccessResponse(String code, String message, R r) {
+		Response<R> response = new Response<R>();
+		response.setSuccess(true);
+		response.setCode(code);
+		response.setMessage(message);
+		response.setObj(r);
+		return response;
+	}
+
+	@Override
+	public Response<R> getSuccessResponse(String code, String message, List<R> list) {
+		Response<R> response = new Response<R>();
+		response.setSuccess(true);
+		response.setCode(code);
+		response.setMessage(message);
+		response.setItems(list);
+		return response;
+	}
+
+
+
+	@Override
 	public Response<R> getSuccessResponse(String code, String message, Response<R> response) {
 		response.setSuccess(true);
 		response.setCode(code);
+		response.setMessage(message);
+		return response;
+	}
+
+	@Override
+	public Response<R> getErrorResponse(String message) {
+		Response<R> response = new Response<R>();
+		response.setSuccess(false);
 		response.setMessage(message);
 		return response;
 	}

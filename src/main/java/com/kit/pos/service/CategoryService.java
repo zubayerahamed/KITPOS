@@ -17,4 +17,8 @@ public interface CategoryService {
 	public Response<CategoryResponseDTO> update(CategoryRequestDTO reqDto);
 
 	public Response<CategoryResponseDTO> getAllCategories();
+
+	public Response<CategoryResponseDTO> getAllParentCategories(String currentCategoryName);
+
+	public Response<CategoryResponseDTO> getAllChildCategories(String currentCategoryName);
 }

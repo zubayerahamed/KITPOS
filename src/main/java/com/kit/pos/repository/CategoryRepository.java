@@ -1,5 +1,7 @@
 package com.kit.pos.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,4 +15,5 @@ import com.kit.pos.entity.pk.CategoryPK;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, CategoryPK> {
 
+	List<Category> findByParentCategoryAndBusinessId(String parentCategory, String businessId);
 }
