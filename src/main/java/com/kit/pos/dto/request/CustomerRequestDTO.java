@@ -36,7 +36,7 @@ public class CustomerRequestDTO  extends BaseRequestDTO<Customer> {
 	private int status = 1;
 
 	@Override
-	Customer getBean() {
+	public Customer getBean() {
 		Customer c = new Customer();
 		BeanUtils.copyProperties(this, c);
 		return c;

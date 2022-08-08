@@ -30,10 +30,7 @@ public abstract class AbstractBaseService<R, E> implements CommonFunctions<R> {
 
 	@Override
 	public Response<R> getSuccessResponse(String message) {
-		Response<R> response = new Response<R>();
-		response.setSuccess(true);
-		response.setMessage(message);
-		return response;
+		return getSuccessResponse(null, message);
 	}
 
 	@Override
@@ -43,6 +40,11 @@ public abstract class AbstractBaseService<R, E> implements CommonFunctions<R> {
 		response.setCode(code);
 		response.setMessage(message);
 		return response;
+	}
+
+	@Override
+	public Response<R> getSuccessResponse(String message, R r) {
+		return getSuccessResponse(null, message, r);
 	}
 
 	@Override
@@ -56,6 +58,11 @@ public abstract class AbstractBaseService<R, E> implements CommonFunctions<R> {
 	}
 
 	@Override
+	public Response<R> getSuccessResponse(String message, List<R> list) {
+		return getSuccessResponse(null, message, list);
+	}
+
+	@Override
 	public Response<R> getSuccessResponse(String code, String message, List<R> list) {
 		Response<R> response = new Response<R>();
 		response.setSuccess(true);
@@ -65,7 +72,10 @@ public abstract class AbstractBaseService<R, E> implements CommonFunctions<R> {
 		return response;
 	}
 
-
+	@Override
+	public Response<R> getSuccessResponse(String message, Response<R> response) {
+		return getSuccessResponse(null, message, response);
+	}
 
 	@Override
 	public Response<R> getSuccessResponse(String code, String message, Response<R> response) {

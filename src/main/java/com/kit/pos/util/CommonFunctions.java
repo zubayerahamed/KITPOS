@@ -14,9 +14,15 @@ public interface CommonFunctions<R> {
 
 	Response<R> getSuccessResponse(String code, String message);
 
+	Response<R> getSuccessResponse(String message, R r);
+
 	Response<R> getSuccessResponse(String code, String message, R r);
 
+	Response<R> getSuccessResponse(String message, List<R> list);
+
 	Response<R> getSuccessResponse(String code, String message, List<R> list);
+
+	Response<R> getSuccessResponse(String message, Response<R> response);
 
 	Response<R> getSuccessResponse(String code, String message, Response<R> response);
 

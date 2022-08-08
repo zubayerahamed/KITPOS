@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CustomerResponseDTO extends BaseResponseDTO<Customer> {
 
-	CustomerResponseDTO(Customer customer){
+	public CustomerResponseDTO(Customer customer){
 		BeanUtils.copyProperties(customer, this);
 	}
 
