@@ -19,7 +19,7 @@ import com.kit.pos.entity.Category;
 import com.kit.pos.entity.pk.CategoryPK;
 import com.kit.pos.enums.CategoryType;
 import com.kit.pos.repository.CategoryRepository;
-import com.kit.pos.service.BaseService;
+import com.kit.pos.service.AbstractBaseService;
 import com.kit.pos.service.CategoryService;
 import com.kit.pos.util.Response;
 
@@ -28,12 +28,12 @@ import com.kit.pos.util.Response;
  * @since Aug 7, 2022
  */
 @Service
-public class CategoryServiceImpl extends BaseService<CategoryResponseDTO> implements CategoryService{
+public class CategoryServiceImpl extends AbstractBaseService<CategoryResponseDTO, CategoryRequestDTO> implements CategoryService<CategoryResponseDTO, CategoryRequestDTO>{
 
 	@Autowired private CategoryRepository repository;
 
 	@Override
-	public Response<CategoryResponseDTO> findByCategoryName(String name) {
+	public Response<CategoryResponseDTO> find(String name) {
 		if(StringUtils.isBlank(name)) return getErrorResponse(null, "Category name required");
 
 		Optional<Category> category = repository.findById(new CategoryPK(appConfig.getBusinessId(), name));
@@ -111,7 +111,7 @@ public class CategoryServiceImpl extends BaseService<CategoryResponseDTO> implem
 	}
 
 	@Override
-	public Response<CategoryResponseDTO> getAllCategories() {
+	public Response<CategoryResponseDTO> getAll() {
 		List<Category> categories = repository.findAll();
 		if(categories == null || categories.isEmpty()) return getErrorResponse("No Categories found");
 

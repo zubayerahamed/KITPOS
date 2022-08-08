@@ -9,7 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kit.pos.dto.request.InvoiceRequestDTO;
+import com.kit.pos.dto.request.UserAccountRequestDTO;
 import com.kit.pos.dto.response.InvoiceResponseDTO;
+import com.kit.pos.dto.response.UserAccountResponseDTO;
+import com.kit.pos.entity.Invoice;
+import com.kit.pos.service.UserService;
 import com.kit.pos.util.Response;
 
 import io.swagger.annotations.Api;
@@ -22,39 +26,10 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("/api/kitpos/invoice")
 @Api(tags = {"Invoice"}, description = "API", produces = "application/json", consumes = "application/json")
-public class InvoiceController extends KITAbstractController {
+public class InvoiceController extends KITAbstractController<Invoice, UserAccountResponseDTO, UserAccountRequestDTO> {
 
-	@PostMapping
-	@ApiOperation(value = "Create Invoice")
-	public Response<InvoiceResponseDTO> save(@RequestBody InvoiceRequestDTO reqDto){
-		
-		
-		return null;
+	public InvoiceController(UserService<UserAccountResponseDTO, UserAccountRequestDTO> service) {
+		super(service);
 	}
 
-	@PutMapping
-	@ApiOperation(value = "Update Invoice")
-	public Response<InvoiceResponseDTO> update(@RequestBody InvoiceRequestDTO reqDto){
-		
-		
-		return null;
-	}
-
-	@GetMapping
-	@ApiOperation(value = "Gell All Invoice")
-	public Response<InvoiceResponseDTO> getAllInvoice(){
-		
-		
-		return null;
-	}
-
-	@GetMapping("/{id}")
-	@ApiOperation(value = "Find Invoice by Id")
-	public Response<InvoiceResponseDTO> findInvoiceById(@PathVariable String id){
-		
-		
-		return null;
-	}
-
-	
 }

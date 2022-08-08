@@ -12,7 +12,7 @@ import com.kit.pos.dto.response.BusinessResponseDTO;
 import com.kit.pos.entity.Business;
 import com.kit.pos.entity.pk.BusinessPK;
 import com.kit.pos.repository.BusinessRepository;
-import com.kit.pos.service.BaseService;
+import com.kit.pos.service.AbstractBaseService;
 import com.kit.pos.service.BusinessService;
 import com.kit.pos.util.Response;
 
@@ -21,7 +21,7 @@ import com.kit.pos.util.Response;
  * @since Jul 24, 2022
  */
 @Service
-public class BusinessServiceImpl extends BaseService<BusinessResponseDTO> implements BusinessService {
+public class BusinessServiceImpl extends AbstractBaseService<BusinessResponseDTO, BusinessRequestDTO> implements BusinessService<BusinessResponseDTO, BusinessRequestDTO> {
 
 	@Autowired private BusinessRepository businessRepository;
 	@Autowired private AppConfig appConfig;
@@ -59,6 +59,24 @@ public class BusinessServiceImpl extends BaseService<BusinessResponseDTO> implem
 		Response<BusinessResponseDTO> response = new Response<BusinessResponseDTO>();
 		response.setObj(responseDTO);
 		return getSuccessResponse(null, "Business saved successfully", response);
+	}
+
+	@Override
+	public Response<BusinessResponseDTO> find(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Response<BusinessResponseDTO> update(BusinessRequestDTO e) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Response<BusinessResponseDTO> getAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

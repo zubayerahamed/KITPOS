@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.kit.pos.dto.request.AuthenticationRequestDTO;
 import com.kit.pos.dto.response.AuthenticationResponseDTO;
 import com.kit.pos.service.AuthenticationService;
-import com.kit.pos.service.BaseService;
+import com.kit.pos.service.AbstractBaseService;
 import com.kit.pos.util.Response;
 
 /**
@@ -18,7 +18,7 @@ import com.kit.pos.util.Response;
  * @since Aug 2, 2022
  */
 @Service
-public class AuthenticationServiceImpl extends BaseService<AuthenticationResponseDTO> implements AuthenticationService {
+public class AuthenticationServiceImpl extends AbstractBaseService<AuthenticationResponseDTO, AuthenticationRequestDTO> implements AuthenticationService<AuthenticationResponseDTO, AuthenticationRequestDTO> {
 
 	@Autowired private AuthenticationManager authenticationManager;
 	@Autowired private UserServiceImpl userService;
@@ -40,6 +40,30 @@ public class AuthenticationServiceImpl extends BaseService<AuthenticationRespons
 		AuthenticationResponseDTO resDto = new AuthenticationResponseDTO(jwt);
 		response.setObj(resDto);
 		return response;
+	}
+
+	@Override
+	public Response<AuthenticationResponseDTO> find(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Response<AuthenticationResponseDTO> save(AuthenticationRequestDTO e) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Response<AuthenticationResponseDTO> update(AuthenticationRequestDTO e) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Response<AuthenticationResponseDTO> getAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

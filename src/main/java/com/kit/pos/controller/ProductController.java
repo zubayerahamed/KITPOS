@@ -9,7 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kit.pos.dto.request.ProductRequestDTO;
+import com.kit.pos.dto.request.UserAccountRequestDTO;
 import com.kit.pos.dto.response.ProductResponseDTO;
+import com.kit.pos.dto.response.UserAccountResponseDTO;
+import com.kit.pos.entity.Product;
+import com.kit.pos.service.UserService;
 import com.kit.pos.util.Response;
 
 import io.swagger.annotations.Api;
@@ -22,46 +26,11 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("/api/kitpos/product")
 @Api(tags = {"Product"}, description = "API", produces = "application/json", consumes = "application/json")
-public class ProductController extends KITAbstractController {
+public class ProductController extends KITAbstractController<Product, UserAccountResponseDTO, UserAccountRequestDTO> {
 
-	@PostMapping
-	@ApiOperation(value = "Create Product")
-	public Response<ProductResponseDTO> save(@RequestBody ProductRequestDTO reqDto){
-		
-		
-		return null;
+	public ProductController(UserService<UserAccountResponseDTO, UserAccountRequestDTO> baseService) {
+		super(baseService);
 	}
 
-	@PutMapping
-	@ApiOperation(value = "Update Product")
-	public Response<ProductResponseDTO> update(@RequestBody ProductRequestDTO reqDto){
-		
-		
-		return null;
-	}
-
-	@GetMapping
-	@ApiOperation(value = "Get All Products")
-	public Response<ProductResponseDTO> getAll(){
-		
-		
-		return null;
-	}
-
-	@GetMapping("/{id}")
-	@ApiOperation(value = "Get Product By Id")
-	public Response<ProductResponseDTO> findById(@PathVariable String id){
-		
-		
-		return null;
-	}
-
-	@GetMapping("/bycategory/{name}")
-	@ApiOperation(value = "Get All Products by Category name")
-	public Response<ProductResponseDTO> getAllByCategoryName(@PathVariable String name){
-		
-		
-		return null;
-	}
 
 }

@@ -1,24 +1,14 @@
 package com.kit.pos.service;
 
-import com.kit.pos.dto.request.CategoryRequestDTO;
-import com.kit.pos.dto.response.CategoryResponseDTO;
 import com.kit.pos.util.Response;
 
 /**
  * @author Zubayer Ahamed
  * @since Aug 4, 2022
  */
-public interface CategoryService {
+public interface CategoryService <R, E> extends BaseService<R, E> {
 
-	public Response<CategoryResponseDTO> findByCategoryName(String name);
+	public Response<R> getAllParentCategories(String currentCategoryName);
 
-	public Response<CategoryResponseDTO> save(CategoryRequestDTO reqDto);
-
-	public Response<CategoryResponseDTO> update(CategoryRequestDTO reqDto);
-
-	public Response<CategoryResponseDTO> getAllCategories();
-
-	public Response<CategoryResponseDTO> getAllParentCategories(String currentCategoryName);
-
-	public Response<CategoryResponseDTO> getAllChildCategories(String currentCategoryName);
+	public Response<R> getAllChildCategories(String currentCategoryName);
 }

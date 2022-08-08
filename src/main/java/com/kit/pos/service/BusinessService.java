@@ -1,16 +1,13 @@
 package com.kit.pos.service;
 
-import com.kit.pos.dto.request.BusinessRequestDTO;
-import com.kit.pos.dto.response.BusinessResponseDTO;
 import com.kit.pos.util.Response;
 
 /**
  * @author Zubayer Ahamed
  * @since Jul 24, 2022
  */
-public interface BusinessService {
+public interface BusinessService<R, E> extends BaseService<R, E>{
 
-	public Response<BusinessResponseDTO> find();
+	public Response<R> find();
 
-	public Response<BusinessResponseDTO> save(BusinessRequestDTO businessRequestDTO);
 }

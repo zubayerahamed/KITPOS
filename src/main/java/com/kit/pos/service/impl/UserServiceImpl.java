@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.kit.pos.constant.BaseConstant;
+import com.kit.pos.dto.request.BusinessRequestDTO;
 import com.kit.pos.dto.request.UserAccountRequestDTO;
 import com.kit.pos.dto.response.BusinessResponseDTO;
 import com.kit.pos.dto.response.UserAccountResponseDTO;
@@ -24,7 +25,7 @@ import com.kit.pos.entity.pk.UserAccountPK;
 import com.kit.pos.enums.UserType;
 import com.kit.pos.model.KITUserDetails;
 import com.kit.pos.repository.UserAccountRepository;
-import com.kit.pos.service.BaseService;
+import com.kit.pos.service.AbstractBaseService;
 import com.kit.pos.service.BusinessService;
 import com.kit.pos.service.UserService;
 import com.kit.pos.util.Response;
@@ -34,9 +35,9 @@ import com.kit.pos.util.Response;
  * @since Jul 24, 2022
  */
 @Service
-public class UserServiceImpl extends BaseService<UserAccountResponseDTO> implements UserService, UserDetailsService {
+public class UserServiceImpl extends AbstractBaseService<UserAccountResponseDTO, UserAccountRequestDTO> implements UserService<UserAccountResponseDTO, UserAccountRequestDTO>, UserDetailsService {
 
-	@Autowired private BusinessService businessService;
+	@Autowired private BusinessService<BusinessResponseDTO, BusinessRequestDTO> businessService;
 	@Autowired UserAccountRepository userRepository;
 
 	@Override
@@ -49,11 +50,10 @@ public class UserServiceImpl extends BaseService<UserAccountResponseDTO> impleme
 		if(BaseConstant.SYSTEM_ADMIN_USERNAME.equalsIgnoreCase(username)) {
 			user = getSystemAdminUser();
 		} else {
-			user = findByUsername(username).getObj();
+			user = find(username).getObj();
 		}
 		if(user == null) throw  new UsernameNotFoundException("User not found in the system");
 		if(user.getStatus() == 0) throw  new UsernameNotFoundException("User is inactive");
-
 
 		BusinessResponseDTO businessResponseDTO = businessService.find().getObj();
 		if(businessResponseDTO == null) throw  new UsernameNotFoundException("Business is not correct");
@@ -64,7 +64,7 @@ public class UserServiceImpl extends BaseService<UserAccountResponseDTO> impleme
 
 
 	@Override
-	public Response<UserAccountResponseDTO> findByUsername(String username) {
+	public Response<UserAccountResponseDTO> find(String username) {
 		if(StringUtils.isBlank(username)) return getErrorResponse(null, "Username required to find a user");
 
 		Optional<UserAccount> optional = userRepository.findById(new UserAccountPK(appConfig.getBusinessId(), username, appConfig.getDivision(), appConfig.getShop()));
@@ -149,7 +149,7 @@ public class UserServiceImpl extends BaseService<UserAccountResponseDTO> impleme
 
 
 	@Override
-	public Response<UserAccountResponseDTO> getAllUsers() {
+	public Response<UserAccountResponseDTO> getAll() {
 		List<UserAccount> users = userRepository.findAll();
 		List<UserAccountResponseDTO> resDto = users.stream().map(data -> new ModelMapper().map(data, UserAccountResponseDTO.class)).collect(Collectors.toList());
 		if(resDto == null || resDto.isEmpty()) return getErrorResponse(null, "No user data found in this system");
