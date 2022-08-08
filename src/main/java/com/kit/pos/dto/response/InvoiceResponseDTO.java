@@ -4,8 +4,13 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
+
+import com.kit.pos.entity.Invoice;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * @author Zubayer Ahamed
@@ -13,7 +18,12 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class InvoiceResponseDTO extends BaseResponseDTO{
+@NoArgsConstructor
+public class InvoiceResponseDTO extends BaseResponseDTO<Invoice>{
+
+	InvoiceResponseDTO(Invoice i){
+		BeanUtils.copyProperties(i, this);
+	}
 
 	private String invoiceId;
 	private Date invoiceDate;

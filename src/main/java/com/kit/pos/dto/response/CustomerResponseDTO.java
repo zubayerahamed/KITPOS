@@ -1,9 +1,13 @@
 package com.kit.pos.dto.response;
 
+import org.springframework.beans.BeanUtils;
+
+import com.kit.pos.entity.Customer;
 import com.kit.pos.enums.CustomerType;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * @author Zubayer Ahamed
@@ -11,7 +15,12 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class CustomerResponseDTO extends BaseResponseDTO {
+@NoArgsConstructor
+public class CustomerResponseDTO extends BaseResponseDTO<Customer> {
+
+	CustomerResponseDTO(Customer customer){
+		BeanUtils.copyProperties(customer, this);
+	}
 
 	private String customerId;
 

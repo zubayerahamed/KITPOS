@@ -15,10 +15,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class AuthenticationRequestDTO extends BaseRequestDTO {
+public class AuthenticationRequestDTO extends BaseRequestDTO<Object> {
 
 	@NotBlank
 	private String username;
 	@NotBlank
 	private String password;
+
+	@Override
+	Object getBean() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 }

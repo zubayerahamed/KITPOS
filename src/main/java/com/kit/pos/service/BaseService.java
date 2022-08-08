@@ -8,11 +8,11 @@ import com.kit.pos.util.Response;
  */
 public interface BaseService<R, E> {
 
-	public Response<R> find(String name);
+	public Response<R> find(String id);
 
-	public Response<R> save(E e);
+	public Response<R> save(E reqDto);
 
-	public Response<R> update(E e);
+	public Response<R> update(E reqDto);
 
 	public Response<R> getAll();
 }

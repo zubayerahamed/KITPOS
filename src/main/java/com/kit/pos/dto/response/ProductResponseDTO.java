@@ -6,19 +6,28 @@ import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
+import org.springframework.beans.BeanUtils;
+
+import com.kit.pos.entity.Product;
 import com.kit.pos.enums.DiscountType;
 import com.kit.pos.enums.ProductGroup;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * @author Zubayer Ahamed
  * @since Aug 3, 2022
  */
 @Data
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class ProductResponseDTO extends BaseResponseDTO {
+public class ProductResponseDTO extends BaseResponseDTO<Product> {
+
+	public ProductResponseDTO(Product product){
+		BeanUtils.copyProperties(product, this);
+	}
 
 	private String productId;
 

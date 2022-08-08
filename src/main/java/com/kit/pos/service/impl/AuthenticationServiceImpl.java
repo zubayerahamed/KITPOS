@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.kit.pos.dto.request.AuthenticationRequestDTO;
 import com.kit.pos.dto.response.AuthenticationResponseDTO;
 import com.kit.pos.service.AuthenticationService;
-import com.kit.pos.service.AbstractBaseService;
 import com.kit.pos.util.Response;
 
 /**

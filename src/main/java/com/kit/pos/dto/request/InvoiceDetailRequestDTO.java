@@ -3,6 +3,10 @@ package com.kit.pos.dto.request;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import org.springframework.beans.BeanUtils;
+
+import com.kit.pos.entity.InvoiceDetail;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -12,7 +16,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class InvoiceDetailRequestDTO extends BaseRequestDTO {
+public class InvoiceDetailRequestDTO extends BaseRequestDTO<InvoiceDetail> {
 
 	private String invoiceId;
 	private String rowId;
@@ -39,4 +43,13 @@ public class InvoiceDetailRequestDTO extends BaseRequestDTO {
 	private String statusOrder;
 	private BigDecimal vatRate;
 	private BigDecimal vatAmt;
+
+	@Override
+	InvoiceDetail getBean() {
+		InvoiceDetail d = new InvoiceDetail();
+		BeanUtils.copyProperties(this, d);
+		return d;
+	}
+
+	
 }

@@ -1,7 +1,12 @@
 package com.kit.pos.dto.response;
 
+import org.springframework.beans.BeanUtils;
+
+import com.kit.pos.entity.Business;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * @author Zubayer Ahamed
@@ -9,7 +14,12 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class BusinessResponseDTO extends BaseResponseDTO {
+@NoArgsConstructor
+public class BusinessResponseDTO extends BaseResponseDTO<Business> {
+
+	BusinessResponseDTO(Business business){
+		BeanUtils.copyProperties(business, this);
+	}
 
 	private String businessId;
 	private String division;

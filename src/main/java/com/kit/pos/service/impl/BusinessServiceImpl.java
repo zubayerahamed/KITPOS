@@ -12,7 +12,6 @@ import com.kit.pos.dto.response.BusinessResponseDTO;
 import com.kit.pos.entity.Business;
 import com.kit.pos.entity.pk.BusinessPK;
 import com.kit.pos.repository.BusinessRepository;
-import com.kit.pos.service.AbstractBaseService;
 import com.kit.pos.service.BusinessService;
 import com.kit.pos.util.Response;
 

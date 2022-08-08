@@ -1,4 +1,4 @@
-package com.kit.pos.service;
+package com.kit.pos.service.impl;
 
 import java.util.List;
 
@@ -13,6 +13,7 @@ import com.kit.pos.constant.BaseConstant;
 import com.kit.pos.dto.response.UserAccountResponseDTO;
 import com.kit.pos.entity.UserAccount;
 import com.kit.pos.enums.UserType;
+import com.kit.pos.service.JWTService;
 import com.kit.pos.util.CommonFunctions;
 import com.kit.pos.util.Response;
 

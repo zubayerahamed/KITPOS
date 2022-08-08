@@ -6,6 +6,7 @@ import com.kit.pos.dto.BaseDTO;
  * @author Zubayer Ahamed
  * @since Aug 2, 2022
  */
-public class BaseRequestDTO extends BaseDTO {
+public abstract class BaseRequestDTO<E> implements BaseDTO<E> {
 
+	abstract E getBean();
 }

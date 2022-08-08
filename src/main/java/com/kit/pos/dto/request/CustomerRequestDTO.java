@@ -2,6 +2,9 @@ package com.kit.pos.dto.request;
 
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.beans.BeanUtils;
+
+import com.kit.pos.entity.Customer;
 import com.kit.pos.enums.CustomerType;
 
 import lombok.Data;
@@ -13,7 +16,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class CustomerRequestDTO  extends BaseRequestDTO {
+public class CustomerRequestDTO  extends BaseRequestDTO<Customer> {
 
 	private String customerId;
 	@NotBlank
@@ -31,4 +34,11 @@ public class CustomerRequestDTO  extends BaseRequestDTO {
 	private String nid;
 	private CustomerType customerType;
 	private int status = 1;
+
+	@Override
+	Customer getBean() {
+		Customer c = new Customer();
+		BeanUtils.copyProperties(this, c);
+		return c;
+	}
 }

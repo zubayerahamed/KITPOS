@@ -2,6 +2,10 @@ package com.kit.pos.dto.request;
 
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.beans.BeanUtils;
+
+import com.kit.pos.entity.UserAccount;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -11,7 +15,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class UserAccountRequestDTO extends BaseRequestDTO {
+public class UserAccountRequestDTO extends BaseRequestDTO<UserAccount> {
 
 	@NotBlank
 	private String username;
@@ -21,4 +25,12 @@ public class UserAccountRequestDTO extends BaseRequestDTO {
 	private boolean waiter;
 	private boolean cashier;
 	private int status;
+
+	@Override
+	UserAccount getBean() {
+		UserAccount u = new UserAccount();
+		BeanUtils.copyProperties(this, u);
+		return u;
+	}
+	
 }

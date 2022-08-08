@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class AuthenticationResponseDTO extends BaseResponseDTO {
+public class AuthenticationResponseDTO extends BaseResponseDTO<Object> {
 
 	private final String token;
 }

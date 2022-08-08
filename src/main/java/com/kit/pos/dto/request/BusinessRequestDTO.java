@@ -2,6 +2,10 @@ package com.kit.pos.dto.request;
 
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.beans.BeanUtils;
+
+import com.kit.pos.entity.Business;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -11,7 +15,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class BusinessRequestDTO extends BaseRequestDTO{
+public class BusinessRequestDTO extends BaseRequestDTO<Business>{
 
 	@NotBlank
 	private String businessId;
@@ -24,4 +28,12 @@ public class BusinessRequestDTO extends BaseRequestDTO{
 	@NotBlank
 	private String name;
 	private int status;
+
+	@Override
+	Business getBean() {
+		Business b = new Business();
+		BeanUtils.copyProperties(this, b);
+		return b;
+	}
+
 }

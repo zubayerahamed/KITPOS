@@ -1,9 +1,13 @@
 package com.kit.pos.dto.response;
 
+import org.springframework.beans.BeanUtils;
+
+import com.kit.pos.entity.UserAccount;
 import com.kit.pos.enums.UserType;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * @author Zubayer Ahamed
@@ -11,7 +15,12 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class UserAccountResponseDTO extends BaseResponseDTO {
+@NoArgsConstructor
+public class UserAccountResponseDTO extends BaseResponseDTO<UserAccount> {
+
+	UserAccountResponseDTO(UserAccount u){
+		BeanUtils.copyProperties(u, this);
+	}
 
 	private String username;
 	private String name;

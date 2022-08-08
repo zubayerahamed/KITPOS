@@ -25,7 +25,6 @@ import com.kit.pos.entity.pk.UserAccountPK;
 import com.kit.pos.enums.UserType;
 import com.kit.pos.model.KITUserDetails;
 import com.kit.pos.repository.UserAccountRepository;
-import com.kit.pos.service.AbstractBaseService;
 import com.kit.pos.service.BusinessService;
 import com.kit.pos.service.UserService;
 import com.kit.pos.util.Response;

@@ -19,7 +19,6 @@ import com.kit.pos.entity.Category;
 import com.kit.pos.entity.pk.CategoryPK;
 import com.kit.pos.enums.CategoryType;
 import com.kit.pos.repository.CategoryRepository;
-import com.kit.pos.service.AbstractBaseService;
 import com.kit.pos.service.CategoryService;
 import com.kit.pos.util.Response;
 

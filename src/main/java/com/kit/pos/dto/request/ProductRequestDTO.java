@@ -2,6 +2,9 @@ package com.kit.pos.dto.request;
 
 import java.math.BigDecimal;
 
+import org.springframework.beans.BeanUtils;
+
+import com.kit.pos.entity.Product;
 import com.kit.pos.enums.DiscountType;
 import com.kit.pos.enums.ProductGroup;
 
@@ -14,7 +17,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class ProductRequestDTO extends BaseRequestDTO {
+public class ProductRequestDTO extends BaseRequestDTO<Product> {
 
 	private String productId;
 
@@ -51,4 +54,12 @@ public class ProductRequestDTO extends BaseRequestDTO {
 	private String image;
 
 	private int status = 1;
+
+	@Override
+	public Product getBean() {
+		Product p = new Product();
+		BeanUtils.copyProperties(this, p);
+		return p;
+	}
+
 }
