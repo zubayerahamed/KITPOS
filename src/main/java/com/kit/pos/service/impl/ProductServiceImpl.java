@@ -1,5 +1,6 @@
 package com.kit.pos.service.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -12,8 +13,11 @@ import org.springframework.stereotype.Service;
 
 import com.kit.pos.dto.request.ProductRequestDTO;
 import com.kit.pos.dto.response.ProductResponseDTO;
+import com.kit.pos.entity.Category;
 import com.kit.pos.entity.Product;
+import com.kit.pos.entity.pk.CategoryPK;
 import com.kit.pos.entity.pk.ProductPK;
+import com.kit.pos.repository.CategoryRepository;
 import com.kit.pos.repository.ProductRepository;
 import com.kit.pos.service.ProductService;
 import com.kit.pos.util.Response;
@@ -26,6 +30,7 @@ import com.kit.pos.util.Response;
 public class ProductServiceImpl extends AbstractBaseService<ProductResponseDTO, ProductRequestDTO> implements ProductService<ProductResponseDTO, ProductRequestDTO>{
 
 	@Autowired private ProductRepository productRepository;
+	@Autowired private CategoryRepository categoryRepo;
 
 	@Override
 	public Response<ProductResponseDTO> find(String id) {
@@ -42,6 +47,24 @@ public class ProductServiceImpl extends AbstractBaseService<ProductResponseDTO, 
 		if(reqDto == null) return getErrorResponse("Data required to do save");
 		
 		// validation
+
+		// checck category exist??
+		if(StringUtils.isBlank(reqDto.getCategoryId())) return getErrorResponse("Category required");
+		Optional<Category> category = categoryRepo.findById(new CategoryPK(appConfig.getBusinessId(), reqDto.getCategoryId()));
+		if(!category.isPresent()) return getErrorResponse("Invalid category selected");
+
+		if(reqDto.getProductGroup() == null) return getErrorResponse("Product group required");
+
+		if(reqDto.getRate() == null) return getErrorResponse("Rate required");
+		if(reqDto.getRate().compareTo((BigDecimal.ZERO)) == -1) return getErrorResponse("Invalid rate");
+		if(StringUtils.isBlank(reqDto.getSellUom())) return getErrorResponse("Selling unit of meserment required");
+		if(appConfig.isActiveInventory() && StringUtils.isBlank(reqDto.getStockUom())) return getErrorResponse("Stock unit of meserment required"); 
+		
+		
+		
+		// create id
+		reqDto.setProductId(idGenerator.getNewProductId());
+		reqDto.setBusinessId(appConfig.getBusinessId());
 		
 		
 		Product p = productRepository.save(reqDto.getBean());
@@ -78,4 +101,6 @@ public class ProductServiceImpl extends AbstractBaseService<ProductResponseDTO, 
 		List<ProductResponseDTO> response = list.stream().map(data -> new ModelMapper().map(data, ProductResponseDTO.class)).collect(Collectors.toList());
 		return getSuccessResponse(null, "Found products", response);
 	}
+
+
 }

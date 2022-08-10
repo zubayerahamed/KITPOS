@@ -13,4 +13,5 @@ import com.kit.pos.entity.pk.ProductPK;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, ProductPK> {
 
+	Product findTopByOrderByProductIdDesc();
 }

@@ -17,3 +17,5 @@ app:
   division : 10
   shop : 10
   counter : 10
+  max-shift: 3
+  active-inventory: true

@@ -44,7 +44,11 @@ public class ProductResponseDTO extends BaseResponseDTO<Product> {
 
 	private BigDecimal rate;
 
-	private String uom;
+	private String purchaseUom;
+
+	private String sellUom;
+	
+	private String stockUom;
 
 	@Enumerated(EnumType.STRING)
 	private DiscountType discountType;

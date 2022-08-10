@@ -33,7 +33,11 @@ public class ProductRequestDTO extends BaseRequestDTO<Product> {
 
 	private BigDecimal rate;
 
-	private String uom;
+	private String purchaseUom;
+
+	private String sellUom;
+	
+	private String stockUom;
 
 	private DiscountType discountType;
 	private BigDecimal discountRate;

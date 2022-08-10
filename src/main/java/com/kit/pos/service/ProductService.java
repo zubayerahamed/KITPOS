@@ -7,4 +7,5 @@ package com.kit.pos.service;
 public interface ProductService<R, E> extends BaseService<R, E> {
 
 
+
 }

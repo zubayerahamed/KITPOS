@@ -24,4 +24,10 @@ public class AppConfig {
 
 	@Value("${app.counter}")
 	private String counter;
+
+	@Value("${app.max-shift:1}")
+	private int maxShift;
+
+	@Value("${app.active-inventory:false}")
+	private boolean activeInventory;
 }

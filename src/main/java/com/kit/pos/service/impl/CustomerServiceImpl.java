@@ -36,7 +36,7 @@ public class CustomerServiceImpl extends AbstractBaseService<CustomerResponseDTO
 		Optional<Customer> customer = customerRepository.findById(new CustomerPK(appConfig.getBusinessId(), id));
 		if(!customer.isPresent()) return getErrorResponse("Customer not found");
 
-		return getSuccessResponse(null, "Customer found", new CustomerResponseDTO(customer.get()));
+		return getSuccessResponse("Customer found", new CustomerResponseDTO(customer.get()));
 	}
 
 	@Transactional
@@ -44,10 +44,13 @@ public class CustomerServiceImpl extends AbstractBaseService<CustomerResponseDTO
 	public Response<CustomerResponseDTO> save(CustomerRequestDTO reqDto) {
 		if(reqDto == null) return getErrorResponse("Data required");
 
+		reqDto.setCustomerId(idGenerator.getNewCustomerId());
+		reqDto.setBusinessId(appConfig.getBusinessId());
+
 		Customer c = customerRepository.save(reqDto.getBean());
 		if(c == null) return getErrorResponse("Can't save Customer");
 
-		return getSuccessResponse(null, "", new CustomerResponseDTO(c)); 
+		return getSuccessResponse("Customer Saved successfully", new CustomerResponseDTO(c)); 
 	}
 
 	@Transactional
@@ -62,11 +65,11 @@ public class CustomerServiceImpl extends AbstractBaseService<CustomerResponseDTO
 		if(!customer.isPresent()) return getErrorResponse("Customer not found");
 
 		Customer c = customer.get();
-		BeanUtils.copyProperties(reqDto, c);
+		BeanUtils.copyProperties(reqDto, c, "businessId");
 		c = customerRepository.save(c);
 		if(c == null) return getErrorResponse("Can't update Customer");
 
-		return getSuccessResponse(null, "", new CustomerResponseDTO(c)); 
+		return getSuccessResponse("Customer updated successfully", new CustomerResponseDTO(c)); 
 	}
 
 	@Override
@@ -75,7 +78,7 @@ public class CustomerServiceImpl extends AbstractBaseService<CustomerResponseDTO
 		if(customers == null || customers.isEmpty()) return getErrorResponse("No customers found");
 
 		List<CustomerResponseDTO> list = customers.stream().map(data -> new ModelMapper().map(data, CustomerResponseDTO.class)).collect(Collectors.toList());
-		return getSuccessResponse(null, "Customers list found", list);
+		return getSuccessResponse("Customers list found", list);
 	}
 
 }

@@ -15,6 +15,7 @@ import com.kit.pos.entity.UserAccount;
 import com.kit.pos.enums.UserType;
 import com.kit.pos.service.JWTService;
 import com.kit.pos.util.CommonFunctions;
+import com.kit.pos.util.IdGenerator;
 import com.kit.pos.util.Response;
 
 /**
@@ -27,6 +28,7 @@ public abstract class AbstractBaseService<R, E> implements CommonFunctions<R> {
 	@Autowired protected AppConfig appConfig;
 	@Autowired protected JWTService jwtUtil;
 	@Autowired protected BCryptPasswordEncoder passwordEncoder;
+	@Autowired protected IdGenerator idGenerator;
 
 	@Override
 	public Response<R> getSuccessResponse(String message) {

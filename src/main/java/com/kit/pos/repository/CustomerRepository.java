@@ -13,4 +13,5 @@ import com.kit.pos.entity.pk.CustomerPK;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, CustomerPK> {
 
+	Customer findTopByOrderByCustomerIdDesc();
 }

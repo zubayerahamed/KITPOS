@@ -52,7 +52,15 @@ public class Product extends BaseEntity<String> {
 
 	private BigDecimal rate;
 
-	private String uom;
+	private String purchaseUom;
+
+	private BigDecimal purchaseCf;
+
+	private String sellUom;
+
+	private BigDecimal sellCf;
+
+	private String stockUom;
 
 	@Enumerated(EnumType.STRING)
 	private DiscountType discountType;
