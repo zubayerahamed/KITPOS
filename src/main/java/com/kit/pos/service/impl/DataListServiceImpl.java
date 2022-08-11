@@ -56,9 +56,9 @@ public class DataListServiceImpl extends AbstractBaseService<DataListResponseDTO
 		Optional<DataList> d = dlRepo.findById(new DataListPK(appConfig.getBusinessId(), reqDto.getCode().trim().toUpperCase(), reqDto.getActualValue()));
 		if(d.isPresent()) return getErrorResponse("Already exist");
 
-		reqDto.setBusinessId(appConfig.getBusinessId());
-
-		DataList dl = dlRepo.save(reqDto.getBean());
+		DataList dl = reqDto.getBean();
+		dl.setBusinessId(appConfig.getBusinessId());
+		dl = dlRepo.save(dl);
 		if(dl == null) return getErrorResponse("Can't save");
 
 		return getSuccessResponse("Saved", new DataListResponseDTO(dl));

@@ -13,9 +13,9 @@ spring:
     active: dev
 
 app: 
-  business_id : 1000101010
-  division : 10
-  shop : 10
-  counter : 10
+  business_id : 10000101
+  division : 01
+  shop : 01
+  counter : 01
   max-shift: 3
   active-inventory: true

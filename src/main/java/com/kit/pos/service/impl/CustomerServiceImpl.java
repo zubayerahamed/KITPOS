@@ -44,10 +44,10 @@ public class CustomerServiceImpl extends AbstractBaseService<CustomerResponseDTO
 	public Response<CustomerResponseDTO> save(CustomerRequestDTO reqDto) {
 		if(reqDto == null) return getErrorResponse("Data required");
 
-		reqDto.setCustomerId(idGenerator.getNewCustomerId());
-		reqDto.setBusinessId(appConfig.getBusinessId());
-
-		Customer c = customerRepository.save(reqDto.getBean());
+		Customer c = reqDto.getBean();
+		c.setCustomerId(idGenerator.getNewCustomerId());
+		c.setBusinessId(appConfig.getBusinessId());
+		c = customerRepository.save(c);
 		if(c == null) return getErrorResponse("Can't save Customer");
 
 		return getSuccessResponse("Customer Saved successfully", new CustomerResponseDTO(c)); 

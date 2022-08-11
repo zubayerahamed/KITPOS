@@ -11,7 +11,5 @@ import lombok.Data;
 @Data
 public abstract class BaseRequestDTO<E> implements BaseDTO<E> {
 
-	private String businessId;
-
 	public abstract E getBean();
 }

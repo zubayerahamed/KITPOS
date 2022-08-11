@@ -6,6 +6,7 @@ import com.kit.pos.entity.DataList;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * @author Zubayer Ahamed
@@ -13,6 +14,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
 public class DataListResponseDTO extends BaseResponseDTO<DataList>{
 
 	public DataListResponseDTO(DataList d){
