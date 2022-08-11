@@ -27,7 +27,7 @@ public class UserAccountRequestDTO extends BaseRequestDTO<UserAccount> {
 	private int status;
 
 	@Override
-	UserAccount getBean() {
+	public UserAccount getBean() {
 		UserAccount u = new UserAccount();
 		BeanUtils.copyProperties(this, u);
 		return u;

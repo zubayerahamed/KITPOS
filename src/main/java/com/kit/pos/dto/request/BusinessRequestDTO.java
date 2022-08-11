@@ -30,7 +30,7 @@ public class BusinessRequestDTO extends BaseRequestDTO<Business>{
 	private int status;
 
 	@Override
-	Business getBean() {
+	public Business getBean() {
 		Business b = new Business();
 		BeanUtils.copyProperties(this, b);
 		return b;

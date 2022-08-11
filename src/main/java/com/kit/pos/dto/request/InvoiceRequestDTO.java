@@ -58,7 +58,7 @@ public class InvoiceRequestDTO extends BaseRequestDTO<Invoice> {
 	private List<InvoiceDetailRequestDTO> orderDetails;
 
 	@Override
-	Invoice getBean() {
+	public Invoice getBean() {
 		Invoice i = new Invoice();
 		BeanUtils.copyProperties(this, i);
 		return i;

@@ -13,5 +13,5 @@ public abstract class BaseRequestDTO<E> implements BaseDTO<E> {
 
 	private String businessId;
 
-	abstract E getBean();
+	public abstract E getBean();
 }

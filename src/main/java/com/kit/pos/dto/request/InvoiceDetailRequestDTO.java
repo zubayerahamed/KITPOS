@@ -45,7 +45,7 @@ public class InvoiceDetailRequestDTO extends BaseRequestDTO<InvoiceDetail> {
 	private BigDecimal vatAmt;
 
 	@Override
-	InvoiceDetail getBean() {
+	public InvoiceDetail getBean() {
 		InvoiceDetail d = new InvoiceDetail();
 		BeanUtils.copyProperties(this, d);
 		return d;

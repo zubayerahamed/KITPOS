@@ -23,7 +23,7 @@ public class AuthenticationRequestDTO extends BaseRequestDTO<Object> {
 	private String password;
 
 	@Override
-	Object getBean() {
+	public Object getBean() {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -25,7 +25,7 @@ public class CategoryRequestDTO extends BaseRequestDTO<Category> {
 	private int status = 1;
 
 	@Override
-	Category getBean() {
+	public Category getBean() {
 		Category c = new Category();
 		BeanUtils.copyProperties(this, c);
 		return c;

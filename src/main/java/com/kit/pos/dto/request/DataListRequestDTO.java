@@ -30,7 +30,7 @@ public class DataListRequestDTO extends BaseRequestDTO<DataList>{
 	private String lsvl6;
 
 	@Override
-	DataList getBean() {
+	public DataList getBean() {
 		DataList d = new DataList();
 		BeanUtils.copyProperties(this, d);
 		return d;
