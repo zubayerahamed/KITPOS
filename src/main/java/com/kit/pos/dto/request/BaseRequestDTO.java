@@ -12,4 +12,6 @@ import lombok.Data;
 public abstract class BaseRequestDTO<E> implements BaseDTO<E> {
 
 	public abstract E getBean();
+
+	private PageableRequestBodyDTO pageableRequestBodyDTO;
 }
