@@ -3,7 +3,7 @@ server:
     context-path: /
     session:
       persistent: true
-  port: 8080
+  port: 8081
   error:
     whitelabel:
       enabled: true

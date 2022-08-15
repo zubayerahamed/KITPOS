@@ -1,9 +1,10 @@
 spring: 
   datasource: 
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: jdbc:sqlserver://localhost;databaseName=KITPOS
+#    url: jdbc:sqlserver://localhost;databaseName=KITPOS
+    url: jdbc:sqlserver://178.238.224.154:2022;databaseName=KITPOS
     username: sa
-    password: zubayer%123
+    password: kitmasters4
     tomcat:
       max-wait: 200000
       max-active: 50
