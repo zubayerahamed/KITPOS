@@ -1,7 +1,5 @@
 package com.kit.pos.dto.request;
 
-import java.util.Date;
-
 import org.springframework.beans.BeanUtils;
 
 import com.kit.pos.entity.SignInAndOut;
@@ -17,8 +15,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class SignInAndOutReqDto extends BaseRequestDTO<SignInAndOut> {
 
-	private Date signInTime;
-	private Date signOutTime;
+	private boolean signIn;
 
 	@Override
 	public SignInAndOut getBean() {

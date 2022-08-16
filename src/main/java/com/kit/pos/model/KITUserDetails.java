@@ -13,10 +13,13 @@ import com.kit.pos.dto.response.BusinessResponseDTO;
 import com.kit.pos.dto.response.UserAccountResponseDTO;
 import com.kit.pos.enums.UserType;
 
+import lombok.NoArgsConstructor;
+
 /**
  * @author Zubayer Ahamed
  * @since Jul 24, 2022
  */
+@NoArgsConstructor
 public class KITUserDetails implements UserDetails {
 
 	private static final long serialVersionUID = 1606048816154494245L;
