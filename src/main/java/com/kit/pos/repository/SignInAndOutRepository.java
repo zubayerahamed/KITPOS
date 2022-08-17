@@ -13,4 +13,5 @@ import com.kit.pos.entity.pk.SignInAndOutPK;
 @Repository
 public interface SignInAndOutRepository extends JpaRepository<SignInAndOut, SignInAndOutPK>{
 
+	SignInAndOut findTopByOrderByRowIdDesc();
 }
